@@ -1,0 +1,22 @@
+services:
+  sql_database:
+    image: 'postgres:latest'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: root # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: studenti_profesori_discipline # The PostgreSQL default database (automatically created at first launch)
+    restart: always
+
+  mongo:
+    image: 'mongo:latest'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+
+  studenti_profesori_discipline:
+    build: './backend/studenti_profesori_discipline'
+    ports:
+      - 5000:5000
