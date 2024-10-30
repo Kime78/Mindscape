@@ -2,7 +2,7 @@ services:
   sql_database:
     image: 'postgres:latest'
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_USER: root # The PostgreSQL user (useful to connect to the database)
       POSTGRES_PASSWORD: root # The PostgreSQL password (useful to connect to the database)
@@ -19,4 +19,6 @@ services:
   studenti_profesori_discipline:
     build: './backend/studenti_profesori_discipline'
     ports:
-      - 5000:5000
+      - "8080:8080"
+    depends_on:
+      - sql_database
