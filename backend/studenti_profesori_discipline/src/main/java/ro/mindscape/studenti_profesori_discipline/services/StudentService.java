@@ -24,9 +24,18 @@ public class StudentService {
         return studentRepo.save(student);
     }
 
-    public Student updateStudent(Student student) {
-        Student newStudent = studentRepo.save(student);
-        return studentRepo.save(newStudent);
+    public Student updateStudent(Student student, int id) {
+        Student s = studentRepo.findById(id).orElse(null);
+        if(s == null) {
+            return null;
+        }
+        s.setName(student.getName());
+        s.setSurname(student.getSurname());
+        s.setEmail(student.getEmail());
+        s.setAn_studiu(student.getAn_studiu());
+        s.setGrupa(student.getGrupa());
+        s.setLectures(student.getLectures());
+        return studentRepo.save(s);
     }
 
     public void deleteStudent(int id) {
