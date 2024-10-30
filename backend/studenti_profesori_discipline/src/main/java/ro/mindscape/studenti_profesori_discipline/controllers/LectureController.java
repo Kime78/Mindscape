@@ -36,9 +36,9 @@ public class LectureController {
         return ResponseEntity.ok(lectureService.createLecture(lecture));
     }
 
-    @PutMapping
-    public ResponseEntity<Lecture> updateLecture(@RequestBody @Valid Lecture lecture) {
-        return ResponseEntity.ok(lectureService.updateLecture(lecture));
+    @PutMapping("/{id}")
+    public ResponseEntity<Lecture> updateLecture(@RequestBody @Valid Lecture lecture, @PathVariable String id) {
+        return ResponseEntity.ok(lectureService.updateLecture(lecture, id));
     }
 
     @DeleteMapping("/{id}")

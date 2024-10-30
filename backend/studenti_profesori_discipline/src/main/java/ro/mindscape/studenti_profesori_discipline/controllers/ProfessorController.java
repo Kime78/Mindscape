@@ -35,9 +35,13 @@ public class ProfessorController {
         return ResponseEntity.ok(professorService.createProfessor(professor));
     }
 
-    @PutMapping
-    public ResponseEntity<Professor> updateProfessor(@Valid @RequestBody Professor professor) {
-        return ResponseEntity.ok(professorService.updateProfessor(professor));
+    @PutMapping("/{id}")
+    public ResponseEntity<Professor> updateProfessor(@Valid @RequestBody Professor professor, @PathVariable int id) {
+        Professor p = professorService.getProfessorById(id);
+        if(p == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(professorService.updateProfessor(professor, id));
     }
 
     @DeleteMapping("/{id}")

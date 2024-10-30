@@ -27,7 +27,19 @@ public class LectureService {
         return lectureRepo.save(lecture);
     }
 
-    public Lecture updateLecture(Lecture lecture) {
+    public Lecture updateLecture(Lecture lecture, String id) {
+        Lecture l = lectureRepo.findById(id).orElse(null);
+        if(l == null) {
+            return null;
+        }
+        l.setAnStudiu(lecture.getAnStudiu());
+        l.setCod(lecture.getCod());
+        l.setStudents(lecture.getStudents());
+        l.setProfessor(lecture.getProfessor());
+        l.setNume_disciplina(lecture.getNume_disciplina());
+        l.setCategorie_disciplina(lecture.getCategorie_disciplina());
+        l.setTip_disciplina(lecture.getTip_disciplina());
+        l.setTip_examinare(lecture.getTip_examinare());
         return lectureRepo.save(lecture);
     }
 
